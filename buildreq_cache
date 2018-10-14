@@ -1,0 +1,4 @@
+0.57
+perl(XML::Filter::BufferText)
+perl(XML::NamespaceSupport)
+perl(XML::SAX::Exception)
