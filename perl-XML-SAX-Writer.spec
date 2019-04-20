@@ -4,11 +4,11 @@
 #
 Name     : perl-XML-SAX-Writer
 Version  : 0.57
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-sax-writer-perl/libxml-sax-writer-perl_0.57-1.debian.tar.xz
-Summary  : 'SAX2 XML Writer'
+Summary  : XML-SAX-Writer perl module (SAX2 writer)
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-XML-SAX-Writer-license = %{version}-%{release}
@@ -26,6 +26,7 @@ SAX2 XML Writer
 Summary: dev components for the perl-XML-SAX-Writer package.
 Group: Development
 Provides: perl-XML-SAX-Writer-devel = %{version}-%{release}
+Requires: perl-XML-SAX-Writer = %{version}-%{release}
 
 %description dev
 dev components for the perl-XML-SAX-Writer package.
@@ -44,7 +45,7 @@ license components for the perl-XML-SAX-Writer package.
 cd ..
 %setup -q -T -D -n XML-SAX-Writer-0.57 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/XML-SAX-Writer-0.57/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/XML-SAX-Writer-0.57/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
