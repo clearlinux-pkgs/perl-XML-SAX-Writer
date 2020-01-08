@@ -4,14 +4,15 @@
 #
 Name     : perl-XML-SAX-Writer
 Version  : 0.57
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-sax-writer-perl/libxml-sax-writer-perl_0.57-1.debian.tar.xz
-Summary  : XML-SAX-Writer perl module (SAX2 writer)
+Summary  : 'SAX2 XML Writer'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-XML-SAX-Writer-license = %{version}-%{release}
+Requires: perl-XML-SAX-Writer-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(XML::Filter::BufferText)
 BuildRequires : perl(XML::NamespaceSupport)
@@ -40,18 +41,28 @@ Group: Default
 license components for the perl-XML-SAX-Writer package.
 
 
+%package perl
+Summary: perl components for the perl-XML-SAX-Writer package.
+Group: Default
+Requires: perl-XML-SAX-Writer = %{version}-%{release}
+
+%description perl
+perl components for the perl-XML-SAX-Writer package.
+
+
 %prep
 %setup -q -n XML-SAX-Writer-0.57
-cd ..
-%setup -q -T -D -n XML-SAX-Writer-0.57 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libxml-sax-writer-perl_0.57-1.debian.tar.xz
+cd %{_builddir}/XML-SAX-Writer-0.57
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/XML-SAX-Writer-0.57/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/XML-SAX-Writer-0.57/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -61,7 +72,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -70,8 +81,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer/deblicense_copyright
+cp %{_builddir}/XML-SAX-Writer-0.57/LICENSE %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer/555bcb759ba8c94f77eeced75b5a4d25c306afb0
+cp %{_builddir}/XML-SAX-Writer-0.57/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer/2f6e95209f8ad6bb846d76cb1b780d25075fd10a
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -84,8 +95,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/Writer.pm
-/usr/lib/perl5/vendor_perl/5.28.2/XML/SAX/Writer/XML.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -94,5 +103,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-XML-SAX-Writer/LICENSE
-/usr/share/package-licenses/perl-XML-SAX-Writer/deblicense_copyright
+/usr/share/package-licenses/perl-XML-SAX-Writer/2f6e95209f8ad6bb846d76cb1b780d25075fd10a
+/usr/share/package-licenses/perl-XML-SAX-Writer/555bcb759ba8c94f77eeced75b5a4d25c306afb0
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/Writer.pm
+/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/Writer/XML.pm
