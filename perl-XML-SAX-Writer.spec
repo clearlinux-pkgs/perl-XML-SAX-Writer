@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-SAX-Writer
 Version  : 0.57
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-sax-writer-perl/libxml-sax-writer-perl_0.57-1.debian.tar.xz
@@ -82,7 +82,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer
 cp %{_builddir}/XML-SAX-Writer-0.57/LICENSE %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer/555bcb759ba8c94f77eeced75b5a4d25c306afb0
-cp %{_builddir}/XML-SAX-Writer-0.57/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer/2f6e95209f8ad6bb846d76cb1b780d25075fd10a
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-XML-SAX-Writer/2f6e95209f8ad6bb846d76cb1b780d25075fd10a
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -108,5 +108,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/Writer.pm
-/usr/lib/perl5/vendor_perl/5.30.1/XML/SAX/Writer/XML.pm
+/usr/lib/perl5/vendor_perl/5.30.2/XML/SAX/Writer.pm
+/usr/lib/perl5/vendor_perl/5.30.2/XML/SAX/Writer/XML.pm
