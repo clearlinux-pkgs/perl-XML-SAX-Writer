@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-SAX-Writer
 Version  : 0.57
-Release  : 21
+Release  : 22
 URL      : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-0.57.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-sax-writer-perl/libxml-sax-writer-perl_0.57-1.debian.tar.xz
@@ -108,5 +108,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/XML/SAX/Writer.pm
-/usr/lib/perl5/vendor_perl/5.34.0/XML/SAX/Writer/XML.pm
+/usr/lib/perl5/*
